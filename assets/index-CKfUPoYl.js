@@ -116,20 +116,20 @@
          ${u}
        </div>
      </div>
-   `},v=[{count:10},{count:20},{count:50},{count:100}],y=[{name:`가격 낮은순`,value:`price_asc`},{name:`가격 높은순`,value:`price_desc`},{name:`이름순`,value:`name_asc`},{name:`이름 역순`,value:`name_desc`}],b=e=>{let t=e.loading||!1,n=e.params||{},r=e.categories||{},i=e.urlParams||{},a=r[i.category1]||[],o=Object.keys(r).map(e=>e)||[],s=t?`<div class="text-sm text-gray-500 italic">카테고리 로딩 중...</div>`:o.map(e=>`
+   `},v=[{count:10},{count:20},{count:50},{count:100}],y=[{name:`가격 낮은순`,value:`price_asc`},{name:`가격 높은순`,value:`price_desc`},{name:`이름순`,value:`name_asc`},{name:`이름 역순`,value:`name_desc`}],b=e=>{console.log(`searchNcategoriesComp`,e);let t=e.loading||!1,n=e.params||{},r=e.categories||{},i=e.urlParams||{},a=r[i.category1]||[],o=Object.keys(r).map(e=>e),s=o.length?o:[],c=t?`<div class="text-sm text-gray-500 italic">카테고리 로딩 중...</div>`:s.map(e=>`
         <button class="category-btn text-sm bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded-full" data-category1="${e}">
           ${e}
         </button>
-      `).join(``),c=``;i.category1&&(c+=`<span class="text-xs text-gray-500">&gt;</span>
-          <button data-breadcrumb="category1" data-category1="${i.category1}" class="text-xs hover:text-blue-800 hover:underline">${i.category1}</button>`),i.category2&&(c+=`<span class="text-xs text-gray-500">&gt;</span><span class="text-xs text-gray-600 cursor-default">${i.category2}</span>`);let l=Object.keys(a).length>0?Object.keys(a).map(e=>`
+      `).join(``),l=``;n.category1&&(l+=`<span class="text-xs text-gray-500">&gt;</span>
+          <button data-breadcrumb="category1" data-category1="${decodeURI(n.category1)}" class="text-xs hover:text-blue-800 hover:underline">${n.category1}</button>`),n.category2&&(l+=`<span class="text-xs text-gray-500">&gt;</span><span class="text-xs text-gray-600 cursor-default">${n.category2}</span>`);let u=Object.keys(a).length>0?Object.keys(a).map(e=>`
             <button data-category1="${i.category1}" data-category2="${i.category2}" class="category2-filter-btn text-left px-3 py-2 text-sm rounded-md border transition-colors 
               ${i.category2===e?`bg-blue-100 border-blue-300 text-blue-800`:`bg-white border-gray-300 text-gray-700 hover:bg-gray-50`}">
                 ${e}
             </button>
-        `).join(``):``,u=v.map(e=>`
+        `).join(``):``,d=v.map(e=>`
     <option value="${e.count}" ${n.limit===e.count?`selected`:``}>
       ${e.count}개
-    </option>`).join(``),d=y.map(e=>`
+    </option>`).join(``),f=y.map(e=>`
     <option value="${e.value}" ${n.sort===e.value?`selected`:``}>
       ${e.name}
     </option>`).join(``);return`
@@ -154,16 +154,16 @@
         <div class="flex items-center gap-2">
           <label class="text-sm text-gray-600">카테고리:</label>
           <button data-breadcrumb="reset" class="text-xs hover:text-blue-800 hover:underline">전체</button>
-          ${Object.keys(i).length>0?`
-            ${c}
+          ${i.category1?`
+            ${l}
             `:``}
         </div>
-        ${Object.keys(i).length>0?`<div class="space-y-2">
+        ${i.category1?`<div class="space-y-2">
           <div class="flex flex-wrap gap-2">
-            ${l}
+            ${u}
           </div>
         </div>`:`<div class="flex flex-wrap gap-2">
-            ${s}
+            ${c}
         </div>`}
       </div>
       <!-- 기존 필터들 -->
@@ -173,7 +173,7 @@
           <label class="text-sm text-gray-600">개수:</label>
           <select id="limit-select"
                   class="text-sm border border-gray-300 rounded px-2 py-1 focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
-            ${u}
+            ${d}
           </select>
         </div>
         <!-- 정렬 -->
@@ -181,7 +181,7 @@
           <label class="text-sm text-gray-600">정렬:</label>
           <select id="sort-select" class="text-sm border border-gray-300 rounded px-2 py-1
                         focus:ring-1 focus="ring-blue-500 focus:border-blue-500">
-            ${d}
+            ${f}
           </select>
         </div>
       </div>
@@ -237,13 +237,13 @@
           <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
-          <a href="${a.BASE_PATH}/?category1=${encodeURIComponent(n.category1)}" data-link="" class="hover:text-blue-600 transition-colors">
+          <a href="${a.BASE_PATH}/?category1=${n.category1}" data-link="" class="hover:text-blue-600 transition-colors">
             ${n.category1}
           </a>
           <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
-          <a href="${a.BASE_PATH}/?category1=${encodeURIComponent(n.category1)}&category2=${encodeURIComponent(n.category2)}" data-link="" class="hover:text-blue-600 transition-colors">
+          <a href="${a.BASE_PATH}/?category1=${n.category1}&category2=${n.category2}" data-link="" class="hover:text-blue-600 transition-colors">
             ${n.category2}
           </a>
         </div>
