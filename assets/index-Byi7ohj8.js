@@ -116,7 +116,7 @@
          ${u}
        </div>
      </div>
-   `},v=[{count:10},{count:20},{count:50},{count:100}],y=[{name:`가격 낮은순`,value:`price_asc`},{name:`가격 높은순`,value:`price_desc`},{name:`이름순`,value:`name_asc`},{name:`이름 역순`,value:`name_desc`}],b=e=>{console.log(`searchNcategoriesComp`,e);let t=e.loading||!1,n=e.params||{},r=e.categories||{},i=e.urlParams||{},a=r[i.category1]||[],o=Object.keys(r).map(e=>e),s=o.length?o:[],c=t?`<div class="text-sm text-gray-500 italic">카테고리 로딩 중...</div>`:s.map(e=>`
+   `},v=[{count:10},{count:20},{count:50},{count:100}],y=[{name:`가격 낮은순`,value:`price_asc`},{name:`가격 높은순`,value:`price_desc`},{name:`이름순`,value:`name_asc`},{name:`이름 역순`,value:`name_desc`}],b=e=>{let t=e.loading||!1,n=e.params||{},r=e.categories||{},i=e.urlParams||{},a=r[i.category1]||[],o=Object.keys(r).map(e=>e),s=o.length?o:[],c=t?`<div class="text-sm text-gray-500 italic">카테고리 로딩 중...</div>`:s.map(e=>`
         <button class="category-btn text-sm bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded-full" data-category1="${e}">
           ${e}
         </button>
