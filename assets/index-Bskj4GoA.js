@@ -227,7 +227,7 @@
         <a href="/" data-link class="inline-block px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">홈으로</a>
       </div>
       </main>
-    `,C=e=>{let{urlParams:t,product:n,relatedProducts:r}=e,i=t.id,a=1;if(!i||!n)return S();let o=`
+    `,C=e=>{let{urlParams:t,product:n,relatedProducts:r}=e,i=t.id,a=e.router,o=1;if(!i||!n)return S();let s=`
     ${f(e)}
     <main class="max-w-md mx-auto px-4 py-4">
       <!-- 브레드크럼 -->
@@ -237,13 +237,13 @@
           <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
-          <a href="/?category1=${encodeURIComponent(n.category1)}" data-link="" class="hover:text-blue-600 transition-colors">
+          <a href="${a.BASE_PATH}/?category1=${encodeURIComponent(n.category1)}" data-link="" class="hover:text-blue-600 transition-colors">
             ${n.category1}
           </a>
           <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
-          <a href="/?category1=${encodeURIComponent(n.category1)}&category2=${encodeURIComponent(n.category2)}" data-link="" class="hover:text-blue-600 transition-colors">
+          <a href="${a.BASE_PATH}/?category1=${encodeURIComponent(n.category1)}&category2=${encodeURIComponent(n.category2)}" data-link="" class="hover:text-blue-600 transition-colors">
             ${n.category2}
           </a>
         </div>
@@ -305,7 +305,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
                 </svg>
               </button>
-              <input type="number" id="quantity-input" value="${a}" min="1" max="107" class="w-16 h-8 text-center text-sm border-t border-b border-gray-300 
+              <input type="number" id="quantity-input" value="${o}" min="1" max="107" class="w-16 h-8 text-center text-sm border-t border-b border-gray-300 
                 focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
               <button id="quantity-increase" class="w-8 h-8 flex items-center justify-center border border-gray-300 
                 rounded-r-md bg-gray-50 hover:bg-gray-100">
@@ -343,7 +343,7 @@
       </div>
     </main>
     ${p()}
-  `;return o},w=[{path:`/`,component:x,isDetail:!1},{path:`/product/:id`,component:C,isDetail:!0}];var T=class{constructor(e){this.routes=w,this.mainStatus=structuredClone(e),this.appRoot=document.querySelector(`#root`),this.BASE_PATH=`/front_6th_chapter1-1`,this.initEventListeners()}getAppPath(e=window.location.pathname){return e.startsWith(this.BASE_PATH)?e.slice(this.BASE_PATH.length)||`/`:e}getFullPath(e){return this.BASE_PATH+e}initEventListeners(){window.addEventListener(`popstate`,()=>this.render()),document.addEventListener(`DOMContentLoaded`,()=>{document.body.addEventListener(`click`,e=>this.handleLinkClick(e)),this.render()})}handleLinkClick(e){let t=e.target.closest(`[data-link]`);t&&(e.preventDefault(),this.navigate(t.getAttribute(`href`)))}_matchRoute(){let e=window.location.pathname,t=new URLSearchParams(window.location.search),n=S,r={},i=!1;for(let t of this.routes){let a=RegExp(`^${this.BASE_PATH}${t.path.replace(/:\w+/g,`([^/]+)`)}$`),o=e.match(a);if(o){n=t.component,i=t.isDetail||!1;let e=(t.path.match(/:\w+/g)||[]).map(e=>e.substring(1));e.forEach((e,t)=>{r[e]=o[t+1]});break}}for(let[e,n]of t.entries())r[e]=n;return{component:n,params:r,isDetail:i}}async render(){let{component:e,params:t,isDetail:n}=this._matchRoute(),r=``;if(n){this.appRoot.innerHTML=`
+  `;return s},w=[{path:`/`,component:x,isDetail:!1},{path:`/product/:id`,component:C,isDetail:!0}];var T=class{constructor(e){this.routes=w,this.mainStatus=structuredClone(e),this.appRoot=document.querySelector(`#root`),this.BASE_PATH=`/front_6th_chapter1-1`,this.initEventListeners()}getAppPath(e=window.location.pathname){return e.startsWith(this.BASE_PATH)?e.slice(this.BASE_PATH.length)||`/`:e}getFullPath(e){return this.BASE_PATH+e}initEventListeners(){window.addEventListener(`popstate`,()=>this.render()),document.addEventListener(`DOMContentLoaded`,()=>{document.body.addEventListener(`click`,e=>this.handleLinkClick(e)),this.render()})}handleLinkClick(e){let t=e.target.closest(`[data-link]`);t&&(e.preventDefault(),this.navigate(t.getAttribute(`href`)))}_matchRoute(){let e=window.location.pathname,t=new URLSearchParams(window.location.search),n=S,r={},i=!1;for(let t of this.routes){let a=RegExp(`^${this.BASE_PATH}${t.path.replace(/:\w+/g,`([^/]+)`)}$`),o=e.match(a);if(o){n=t.component,i=t.isDetail||!1;let e=(t.path.match(/:\w+/g)||[]).map(e=>e.substring(1));e.forEach((e,t)=>{r[e]=o[t+1]});break}}for(let[e,n]of t.entries())r[e]=n;return{component:n,params:r,isDetail:i}}async render(){let{component:e,params:t,isDetail:n}=this._matchRoute(),r=``;if(n){this.appRoot.innerHTML=`
         <header class="bg-white shadow-sm sticky top-0 z-40">
           <div class="max-w-md mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
